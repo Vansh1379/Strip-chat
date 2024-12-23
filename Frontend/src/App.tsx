@@ -1,34 +1,56 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { Lock, MessageCircle, Shield, User } from 'react-feather'
 import './App.css'
+import Header from './components/Header'
+import { RoomForm } from './components/RoomForm'
+import { FeatureCard } from './components/FeatureCard'
+
+const features = [
+  {
+    Icon: Shield,
+    title: 'Anonymous',
+    description: 'No sign-up. No trace. Your identity remains a mystery.',
+    iconColor: 'text-indigo-300',
+    titleColor: 'text-indigo-300',
+  },
+  {
+    Icon: Lock,
+    title: 'Encrypted',
+    description: 'End-to-end encryption keeps your messages secure.',
+    iconColor: 'text-pink-300',
+    titleColor: 'text-pink-300'
+  },
+  {
+    Icon: MessageCircle,
+    title: 'Ephemeral',
+    description: 'Messages vanish forever. Leave no digital footprint.',
+    iconColor: 'text-indigo-300',
+    titleColor: 'text-indigo-300'
+  },
+  {
+    Icon: User,
+    title: 'Private Rooms',
+    description: 'Create or join rooms. You control who enters.',
+    iconColor: 'text-pink-300',
+    titleColor: 'text-pink-300'
+  }
+]
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-800 text-white flex flex-col">
+      <main className="flex-grow container mx-auto px-4 py-12">
+        <Header />
+        <RoomForm />
+        <div className='grid md:grid-cols-2 gap-8 mb-16'>
+          {features.map((features, Index) => (
+            <FeatureCard key={Index} {...features} />
+          ))}
+        </div>
+      </main>
+      <footer className='text-center py-4 text-indigo-200'>
+        <p> &copy; 2023 Strip Chat. Embrace the freedom of truly private conversations.</p>
+      </footer>
+    </div>
   )
 }
 
